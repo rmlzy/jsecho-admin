@@ -34,6 +34,7 @@ export class ListComponent implements OnInit {
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
+        return;
       }
       this.tableData = res.data;
     } catch (e) {
