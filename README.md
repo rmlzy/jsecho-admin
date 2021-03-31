@@ -1,1 +1,1 @@
-The admin site of jsecho.
+The Admin Site of Jsecho.
