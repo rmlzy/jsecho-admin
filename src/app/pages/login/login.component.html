@@ -1,0 +1,35 @@
+<div nz-row class="login">
+  <div class="login-form">
+    <form nz-form [formGroup]="loginForm" (ngSubmit)="submit()">
+      <h2>jsecho</h2>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="请输入用户名">
+          <input nz-input formControlName="name" placeholder="用户名" nzSize="large" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control nzErrorTip="请输入密码">
+          <input nz-input formControlName="password" placeholder="密码" nzSize="large" />
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item>
+        <nz-form-control>
+          <label nz-checkbox>
+            <span>下次自动登录</span>
+          </label>
+        </nz-form-control>
+      </nz-form-item>
+
+      <nz-form-item nz-row style="margin-bottom: 8px">
+        <nz-form-control>
+          <button nz-button nzBlock nzSize="large" nzType="primary" type="submit">
+            登录
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+</div>
