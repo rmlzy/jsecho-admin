@@ -1,0 +1,52 @@
+<nz-table
+  #userTable
+  nzSize="small"
+  [nzBordered]="true"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="true"
+  [nzShowTotal]="totalTemplate"
+  [nzLoading]="tableLoading"
+  [nzData]="tableData.items"
+  [nzPageIndex]="tableData.pageIndex"
+  [nzPageSize]="tableData.pageSize"
+  [nzTotal]="tableData.total"
+  (nzQueryParams)="query($event)"
+>
+  <thead>
+    <tr>
+      <th nzWidth="50px">ID</th>
+      <th>用户名</th>
+      <th>昵称</th>
+      <th>电子邮件</th>
+      <th>最近登录</th>
+      <th>用户组</th>
+      <th nzWidth="120px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of userTable.data">
+      <td>{{ data.uid }}</td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.screenName }}</td>
+      <td>
+        <a href="mailto:{{ data.mail }}">{{ data.mail }}</a>
+      </td>
+      <td>{{ data.logged | timeago }}</td>
+      <td>{{ data.group | userGroup }}</td>
+      <td>
+        <a>编辑</a>
+        <nz-divider nzType="vertical"></nz-divider>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="删除以后不可恢复, 是否继续?"
+          nzPopconfirmPlacement="left"
+          (nzOnConfirm)="remove(data.uid)"
+        >
+          删除
+        </a>
+      </td>
+    </tr>
+  </tbody>
+
+  <ng-template #totalTemplate let-total>共 {{ total }} 条数据</ng-template>
+</nz-table>

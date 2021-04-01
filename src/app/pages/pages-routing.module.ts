@@ -11,9 +11,14 @@ const routes: Routes = [
     children: [
       { path: "", component: DashboardComponent },
       {
-        path: "content",
+        path: "post",
         loadChildren: () =>
-          import("./content/content.module").then((m) => m.ContentModule),
+          import("./post/post.module").then((m) => m.PostModule),
+      },
+      {
+        path: "user",
+        loadChildren: () =>
+          import("./user/user.module").then((m) => m.UserModule),
       },
     ],
   },

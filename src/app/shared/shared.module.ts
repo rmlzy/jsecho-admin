@@ -18,10 +18,12 @@ import "../config/echart.theme";
 import { NgZorroAntdModule } from "./ng-zorro-antd.module";
 
 // pipes
-import { TimeagoPipe } from "@/pipes/timeago.pipe";
+import { TimeagoPipe, UserGroupPipe } from "@/pipes";
+const pipes = [TimeagoPipe, UserGroupPipe];
 
 // components
 import { ExampleComponent, TagPickerComponent } from "../components";
+const components = [ExampleComponent, TagPickerComponent];
 
 echarts.use([
   TitleComponent,
@@ -38,15 +40,14 @@ echarts.use([
     NgZorroAntdModule,
     NgxEchartsModule.forRoot({ echarts }),
   ],
-  declarations: [ExampleComponent, TagPickerComponent, TimeagoPipe],
+  declarations: [...pipes, ...components],
   exports: [
     FormsModule,
     ReactiveFormsModule,
     NgZorroAntdModule,
     NgxEchartsModule,
-    ExampleComponent,
-    TagPickerComponent,
-    TimeagoPipe,
+    ...pipes,
+    ...components,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { NzTableQueryParams } from "ng-zorro-antd/table";
 import { HttpClient } from "@angular/common/http";
 import { NzMessageService } from "ng-zorro-antd/message";
-import { ITableData, IResponse } from "./list.interface";
-import { environment } from "../../../../environments/environment";
+import { NzTableQueryParams } from "ng-zorro-antd/table";
+import { environment } from "@environments/environment";
+import { IResponse, ITableData } from "./list.interface";
 
 @Component({
   selector: "app-list",
@@ -28,7 +28,7 @@ export class ListComponent implements OnInit {
     try {
       const { pageIndex, pageSize } = this.tableData;
       const res = await this.http
-        .get<IResponse>(`${environment.baseUrl}/contents`, {
+        .get<IResponse>(`${environment.baseUrl}/users`, {
           params: { pageIndex: String(pageIndex), pageSize: String(pageSize) },
         })
         .toPromise();

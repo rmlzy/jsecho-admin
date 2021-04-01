@@ -35,3 +35,10 @@ export interface IStringResponse {
   message: string;
   data: string;
 }
+
+export type IUserGroup =
+  | "administrator"
+  | "editor"
+  | "contributor"
+  | "subscriber"
+  | "visitor";
