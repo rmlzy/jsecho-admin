@@ -44,11 +44,11 @@ export class ListComponent implements OnInit {
     }
   }
 
-  async remove(cid: number) {
+  async remove(uid: number) {
     this.tableLoading = true;
     try {
       const res = await this.http
-        .delete<IResponse>(`${environment.baseUrl}/contents/${cid}`)
+        .delete<IResponse>(`${environment.baseUrl}/users/${uid}`)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);

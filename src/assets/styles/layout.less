@@ -1,7 +1,12 @@
 .ng-layout {
-  background: #f4f6fa;
+  background: #f6f6f3;
+
+  &-bread {
+    margin-bottom: 20px;
+  }
 
   .ant-menu-horizontal {
+    line-height: 36px;
     border-bottom: none;
   }
 
@@ -10,9 +15,14 @@
   }
 
   &-container {
-    width: 1288px;
+    width: 1140px;
     margin: 0 auto;
   }
+}
+
+.ant-page-header {
+  margin-top: -20px;
+  padding: 20px 0;
 }
 
 // 垂直布局
@@ -74,9 +84,9 @@
 }
 
 .is-fixed-header {
-  padding-top: 50px;
+  padding-top: 36px;
 
-  .app-header {
+  .app-aside {
     position: fixed;
     top: 0;
     left: 0;

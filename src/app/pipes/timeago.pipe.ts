@@ -6,6 +6,9 @@ import { format } from "timeago.js";
 })
 export class TimeagoPipe implements PipeTransform {
   transform(value: number): string {
-    return format(value * 1000, "zh_CN");
+    if (value) {
+      return format(value * 1000, "zh_CN");
+    }
+    return "-";
   }
 }
