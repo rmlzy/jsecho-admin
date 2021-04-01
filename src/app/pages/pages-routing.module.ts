@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { Routes, RouterModule } from "@angular/router";
-
-import { DefaultComponent, BlankComponent } from "../theme/layouts";
+import { DefaultComponent, BlankComponent } from "@/layouts";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { LoginComponent } from "./login/login.component";
 
@@ -13,7 +12,8 @@ const routes: Routes = [
       { path: "", component: DashboardComponent },
       {
         path: "content",
-        loadChildren: () => import("./content/content.module").then((m) => m.ContentModule),
+        loadChildren: () =>
+          import("./content/content.module").then((m) => m.ContentModule),
       },
     ],
   },

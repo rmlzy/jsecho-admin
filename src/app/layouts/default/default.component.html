@@ -1,0 +1,19 @@
+<nz-spin [nzSpinning]="spinning" nzTip="正在请求数据...">
+  <div
+    class="ng-layout"
+    [class.aside-collapsed]="collapsed"
+    [class.is-horizontal]="theme.layout === 'horizontal'"
+    [class.is-vertical]="theme.layout === 'vertical'"
+    [class.is-light-aside]="theme.asideTheme === 'light'"
+    [class.is-dark-aside]="theme.asideTheme === 'dark'"
+    [class.is-fixed-header]="theme.fixedHeader"
+    [class.is-fluid]="theme.fluid"
+  >
+    <app-header></app-header>
+    <app-aside
+      [collapsed]="collapsed"
+      (toggleCollapsed)="toggleCollapsed($event)"
+    ></app-aside>
+    <app-body></app-body>
+  </div>
+</nz-spin>

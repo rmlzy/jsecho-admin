@@ -15,15 +15,21 @@
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-@primary-1: color(~`colorPalette("@{primary-color}", 1) `); // replace tint(@primary-color, 90%)
-@primary-2: color(~`colorPalette("@{primary-color}", 2) `); // replace tint(@primary-color, 80%)
+@primary-1: color(
+  ~`colorPalette("@{primary-color}", 1) `
+); // replace tint(@primary-color, 90%)
+@primary-2: color(
+  ~`colorPalette("@{primary-color}", 2) `
+); // replace tint(@primary-color, 80%)
 @primary-3: color(~`colorPalette("@{primary-color}", 3) `); // unused
 @primary-4: color(~`colorPalette("@{primary-color}", 4) `); // unused
 @primary-5: color(
   ~`colorPalette("@{primary-color}", 5) `
 ); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
 @primary-6: @primary-color; // color used to control the text color of active buttons, don't use, use @primary-color
-@primary-7: color(~`colorPalette("@{primary-color}", 7) `); // replace shade(@primary-color, 5%)
+@primary-7: color(
+  ~`colorPalette("@{primary-color}", 7) `
+); // replace shade(@primary-color, 5%)
 @primary-8: color(~`colorPalette("@{primary-color}", 8) `); // unused
 @primary-9: color(~`colorPalette("@{primary-color}", 9) `); // unused
 @primary-10: color(~`colorPalette("@{primary-color}", 10) `); // unused
@@ -35,10 +41,12 @@
 @body-background: #fff;
 // Base background color for most components
 @component-background: #fff;
-@font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
-  "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, sans-serif,
-  "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-@code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
+@font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI",
+  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
+  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+  "Segoe UI Symbol";
+@code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
+  monospace;
 @heading-color: fade(#000, 85%);
 @text-color: fade(#000, 65%);
 @text-color-secondary: fade(#000, 45%);
@@ -95,7 +103,12 @@
 @ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
 
 // Border color
-@border-color-base: rgba(101, 109, 119, 0.16); // base border outline a component
+@border-color-base: rgba(
+  101,
+  109,
+  119,
+  0.16
+); // base border outline a component
 @border-color-split: hsv(0, 0, 91%); // split border inside a component
 @border-width-base: 1px; // width of the border for a component
 @border-style-base: solid; // style of a components border
@@ -323,7 +336,7 @@
 // ---
 @menu-inline-toplevel-item-height: 40px;
 @menu-item-height: 40px;
-@menu-collapsed-width: 50px;
+@menu-collapsed-width: 80px;
 @menu-bg: @component-background;
 @menu-popup-bg: @component-background;
 @menu-item-color: @text-color;
@@ -333,7 +346,7 @@
 @menu-item-group-title-color: @text-color-secondary;
 // dark theme
 @menu-dark-color: @text-color-secondary-dark;
-@menu-dark-bg: #232e3c;
+@menu-dark-bg: #292d33;
 @menu-dark-arrow-color: #fff;
 @menu-dark-submenu-bg: rgba(0, 0, 0, 0.2);
 @menu-dark-highlight-color: #fff;

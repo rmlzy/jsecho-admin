@@ -27,7 +27,7 @@ registerLocaleData(zh);
     SharedModule,
   ],
   providers: [
-    { provide: NZ_I18N, useValue: zh_CN, multi: true },
+    { provide: NZ_I18N, useValue: zh_CN },
     { provide: HTTP_INTERCEPTORS, useClass: ApiInterceptor, multi: true },
   ],
   bootstrap: [AppComponent],

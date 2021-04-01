@@ -1,4 +1,10 @@
-import { Component, ElementRef, ViewChild, forwardRef, Input } from "@angular/core";
+import {
+  Component,
+  ElementRef,
+  ViewChild,
+  forwardRef,
+  Input,
+} from "@angular/core";
 import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
 
 type ITags = string[];
