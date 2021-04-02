@@ -1,9 +1,13 @@
-<div class="ng-layout-bread">
-  <nz-breadcrumb>
-    <nz-breadcrumb-item>控制台</nz-breadcrumb-item>
-    <nz-breadcrumb-item>管理文章</nz-breadcrumb-item>
-  </nz-breadcrumb>
-</div>
+<nz-page-header nzTitle="管理文章">
+  <nz-page-header-extra>
+    <a routerLink="/post/create">
+      <button nz-button nzType="primary">
+        <i nz-icon nzType="plus"></i>
+        <span>新增</span>
+      </button>
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>
 
 <nz-table
   #contentTable
@@ -21,24 +25,24 @@
 >
   <thead>
     <tr>
-      <th nzWidth="50px">ID</th>
+      <th nzWidth="80px">ID</th>
       <th>标题</th>
       <th nzWidth="100px">作者</th>
       <th nzWidth="200px">分类</th>
       <th nzWidth="100px">日期</th>
-      <th nzWidth="120px">操作</th>
+      <th nzWidth="100px">操作</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of contentTable.data">
       <td>{{ data.cid }}</td>
-      <td>{{ data.title }}</td>
+      <td>
+        <a [routerLink]="'/post/update/' + data.cid">{{ data.title }}</a>
+      </td>
       <td>{{ data.authorName }}</td>
       <td>{{ data.categories }}</td>
       <td>{{ data.created | timeago }}</td>
       <td>
-        <a>编辑</a>
-        <nz-divider nzType="vertical"></nz-divider>
         <a
           nz-popconfirm
           nzPopconfirmTitle="删除以后不可恢复, 是否继续?"

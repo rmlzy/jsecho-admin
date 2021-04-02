@@ -1,65 +1,56 @@
 <div class="app-aside">
-  <div class="ng-layout-container">
-    <div class="app-aside__inner">
-      <ul
-        nz-menu
-        [nzInlineCollapsed]="collapsed"
-        [nzTheme]="menuTheme"
-        [nzMode]="menuMode"
-      >
-        <ng-container
-          *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"
-        ></ng-container>
-        <ng-template #menuTpl let-menus>
-          <ng-container *ngFor="let menu of menus">
-            <li
-              *ngIf="!menu.children"
-              nz-menu-item
-              [nzPaddingLeft]="menu.level * 24"
-              [nzDisabled]="menu.disabled"
-              [nzSelected]="menu.selected"
-            >
-              <a [routerLink]="menu.link">
-                <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
-                <span>{{ menu.title }}</span>
-              </a>
-            </li>
-            <li
-              *ngIf="menu.children"
-              nz-submenu
-              [nzPaddingLeft]="menu.level * 24"
-              [nzOpen]="menu.open"
-              [nzTitle]="menu.title"
-              [nzIcon]="menu.icon"
-              [nzDisabled]="menu.disabled"
-            >
-              <ul>
-                <ng-container
-                  *ngTemplateOutlet="
-                    menuTpl;
-                    context: { $implicit: menu.children }
-                  "
-                ></ng-container>
-              </ul>
-            </li>
-          </ng-container>
-        </ng-template>
-      </ul>
+  <div class="app-aside__inner">
+    <ul
+      nz-menu
+      [nzInlineCollapsed]="collapsed"
+      [nzTheme]="menuTheme"
+      [nzMode]="menuMode"
+      (nzClick)="(onMenuClick)"
+    >
+      <ng-container
+        *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"
+      ></ng-container>
+      <ng-template #menuTpl let-menus>
+        <ng-container *ngFor="let menu of menus">
+          <li
+            *ngIf="!menu.children"
+            nz-menu-item
+            [nzDisabled]="menu.disabled"
+            [nzSelected]="menu.selected"
+          >
+            <a [routerLink]="menu.link">
+              <i nz-icon [nzType]="menu.icon" *ngIf="menu.icon"></i>
+              <span>{{ menu.title }}</span>
+            </a>
+          </li>
+          <li
+            *ngIf="menu.children"
+            nz-submenu
+            [nzPaddingLeft]="menu.level"
+            [nzOpen]="menu.open"
+            [nzTitle]="menu.title"
+            [nzIcon]="menu.icon"
+            [nzDisabled]="menu.disabled"
+          >
+            <ul>
+              <ng-container
+                *ngTemplateOutlet="
+                  menuTpl;
+                  context: { $implicit: menu.children }
+                "
+              ></ng-container>
+            </ul>
+          </li>
+        </ng-container>
+      </ng-template>
+    </ul>
 
-      <ul nz-menu [nzTheme]="menuTheme" [nzMode]="menuMode">
-        <li nz-menu-item (click)="logout()">登出</li>
-        <li nz-menu-item>网站</li>
-      </ul>
-    </div>
-  </div>
-
-  <div *ngIf="menuMode === 'inline'" class="app-aside-collapsed">
-    <div class="collapsed-icon" (click)="toggle()">
-      <i
-        nz-icon
-        [nzType]="collapsed ? 'arrow-right' : 'arrow-left'"
-        nzTheme="outline"
-      ></i>
-    </div>
+    <ul nz-menu [nzTheme]="menuTheme" [nzMode]="menuMode">
+      <li nz-menu-item (click)="toProfilePage()">
+        {{ userProfile.screenName }}
+      </li>
+      <li nz-menu-item (click)="logout()">登出</li>
+      <li nz-menu-item (click)="openUserSite()">网站</li>
+    </ul>
   </div>
 </div>

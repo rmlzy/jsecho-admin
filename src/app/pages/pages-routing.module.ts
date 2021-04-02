@@ -20,6 +20,25 @@ const routes: Routes = [
         loadChildren: () =>
           import("./user/user.module").then((m) => m.UserModule),
       },
+      {
+        path: "category",
+        loadChildren: () =>
+          import("./category/category.module").then((m) => m.CategoryModule),
+      },
+      {
+        path: "tag",
+        loadChildren: () => import("./tag/tag.module").then((m) => m.TagModule),
+      },
+      {
+        path: "comment",
+        loadChildren: () =>
+          import("./comment/comment.module").then((m) => m.CommentModule),
+      },
+      {
+        path: "setting",
+        loadChildren: () =>
+          import("./setting/setting.module").then((m) => m.SettingModule),
+      },
     ],
   },
   {

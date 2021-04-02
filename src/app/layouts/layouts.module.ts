@@ -5,7 +5,6 @@ import { SharedModule } from "@/shared/shared.module";
 import { DefaultComponent } from "./default/default.component";
 import { BlankComponent } from "./blank/blank.component";
 import {
-  AppHeaderComponent,
   AppBodyComponent,
   AppAsideComponent,
   AppFooterComponent,
@@ -15,7 +14,6 @@ import {
   imports: [CommonModule, RouterModule, SharedModule],
   declarations: [
     DefaultComponent,
-    AppHeaderComponent,
     AppBodyComponent,
     AppAsideComponent,
     AppFooterComponent,

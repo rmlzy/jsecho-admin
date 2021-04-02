@@ -39,11 +39,19 @@ export class AppAsideComponent implements OnInit {
 
   ngOnInit() {}
 
+  onMenuClick() {}
+
   toggle() {
     this.toggleCollapsed.emit();
   }
 
+  toProfilePage() {}
+
   async logout() {
     await this.authService.logout();
+  }
+
+  openUserSite() {
+    window.open(this.userProfile.url);
   }
 }

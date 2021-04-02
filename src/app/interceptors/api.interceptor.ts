@@ -31,6 +31,7 @@ export class ApiInterceptor implements HttpInterceptor {
       map((event: HttpEvent<any>) => {
         if (event instanceof HttpResponse) {
           if (event.body.code === 401) {
+            this.cookie.delete("token");
             this.router.navigateByUrl("/login");
           }
         }
