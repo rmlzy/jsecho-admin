@@ -1,7 +1,9 @@
 <div nz-row class="login">
   <div class="login-form">
     <form nz-form [formGroup]="loginForm" (ngSubmit)="submit()">
-      <h2>jsecho</h2>
+      <div class="login-logo">
+        <img src="assets/images/logo-grey.png">
+      </div>
 
       <nz-form-item>
         <nz-form-control nzErrorTip="请输入用户名">
