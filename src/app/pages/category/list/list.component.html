@@ -1,1 +1,59 @@
-<p>list works!</p>
+<nz-page-header nzTitle="管理分类">
+  <nz-page-header-extra>
+    <a routerLink="/category/create">
+      <button nz-button nzType="primary">
+        <i nz-icon nzType="plus"></i>
+        <span>新增</span>
+      </button>
+    </a>
+  </nz-page-header-extra>
+</nz-page-header>
+
+<nz-table
+  #table
+  nzSize="small"
+  [nzBordered]="true"
+  [nzFrontPagination]="false"
+  [nzShowSizeChanger]="true"
+  [nzShowTotal]="totalTemplate"
+  [nzLoading]="tableLoading"
+  [nzData]="tableData.items"
+  [nzPageIndex]="tableData.pageIndex"
+  [nzPageSize]="tableData.pageSize"
+  [nzTotal]="tableData.total"
+  (nzQueryParams)="query($event)"
+>
+  <thead>
+    <tr>
+      <th>名称</th>
+      <th>子分类</th>
+      <th>缩略名</th>
+      <th>是否默认</th>
+      <th>文章数</th>
+      <th nzWidth="100px">操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let data of table.data">
+      <td>
+        <a [routerLink]="'/category/update/' + data.mid">{{ data.name }}</a>
+      </td>
+      <td>{{ data.name }}</td>
+      <td>{{ data.slug }}</td>
+      <td></td>
+      <td></td>
+      <td>
+        <a
+          nz-popconfirm
+          nzPopconfirmTitle="删除以后不可恢复, 是否继续?"
+          nzPopconfirmPlacement="left"
+          (nzOnConfirm)="remove(data.mid)"
+        >
+          删除
+        </a>
+      </td>
+    </tr>
+  </tbody>
+
+  <ng-template #totalTemplate let-total>共 {{ total }} 条数据</ng-template>
+</nz-table>

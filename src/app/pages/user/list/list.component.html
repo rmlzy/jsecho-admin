@@ -25,7 +25,6 @@
 >
   <thead>
     <tr>
-      <th nzWidth="80px">ID</th>
       <th>用户名</th>
       <th>昵称</th>
       <th>电子邮件</th>
@@ -36,7 +35,6 @@
   </thead>
   <tbody>
     <tr *ngFor="let data of userTable.data">
-      <td>{{ data.uid }}</td>
       <td>
         <a [routerLink]="'/user/update/' + data.uid">{{ data.name }}</a>
       </td>

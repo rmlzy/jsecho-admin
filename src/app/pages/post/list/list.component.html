@@ -25,23 +25,27 @@
 >
   <thead>
     <tr>
-      <th nzWidth="80px">ID</th>
       <th>标题</th>
       <th nzWidth="100px">作者</th>
       <th nzWidth="200px">分类</th>
-      <th nzWidth="100px">日期</th>
+      <th nzWidth="130px">创建时间</th>
+      <th nzWidth="100px">上次更新</th>
       <th nzWidth="100px">操作</th>
     </tr>
   </thead>
   <tbody>
     <tr *ngFor="let data of contentTable.data">
-      <td>{{ data.cid }}</td>
       <td>
         <a [routerLink]="'/post/update/' + data.cid">{{ data.title }}</a>
       </td>
       <td>{{ data.authorName }}</td>
-      <td>{{ data.categories }}</td>
-      <td>{{ data.created | timeago }}</td>
+      <td>
+        <nz-tag *ngFor="let item of data.categories">
+          {{ item.name }}
+        </nz-tag>
+      </td>
+      <td>{{ data.created | format }}</td>
+      <td>{{ data.modified | timeago }}</td>
       <td>
         <a
           nz-popconfirm

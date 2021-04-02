@@ -1,1 +1,81 @@
-<p>update works!</p>
+<nz-page-header
+  [nzTitle]="currentMid ? '编辑标签' : '创建标签'"
+></nz-page-header>
+
+<nz-spin [nzSpinning]="spinning">
+  <div nz-row nzGutter="10">
+    <div
+      nz-col
+      [nzXs]="{ span: 24 }"
+      [nzSm]="{ span: 20, offset: 2 }"
+      [nzMd]="{ span: 12, offset: 6 }"
+      [nzLg]="{ span: 10, offset: 7 }"
+    >
+      <form
+        nz-form
+        [formGroup]="updateForm"
+        nzLayout="vertical"
+        (ngSubmit)="submit()"
+      >
+        <nz-form-item>
+          <nz-form-label nzRequired>分类名称</nz-form-label>
+          <nz-form-control nzErrorTip="必须填写分类名称">
+            <input nz-input formControlName="name" maxlength="200" />
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>分类缩略名</nz-form-label>
+          <nz-form-control [nzExtra]="slugExtraTpl">
+            <input nz-input formControlName="slug" maxlength="200" />
+            <ng-template #slugExtraTpl>
+              <div>
+                分类缩略名用于创建友好的链接形式, 建议使用字母, 数字,
+                下划线和横杠.
+              </div>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>父级分类</nz-form-label>
+          <nz-form-control [nzExtra]="parentExtraTpl">
+            <nz-select formControlName="parent" style="width: 200px">
+              <nz-option
+                *ngFor="let item of parentEnums"
+                [nzValue]="item.mid"
+                [nzLabel]="item.name"
+              >
+              </nz-option>
+            </nz-select>
+            <ng-template #parentExtraTpl>
+              <div>此分类将归档在您选择的父级分类下.</div>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item>
+          <nz-form-label>分类描述</nz-form-label>
+          <nz-form-control [nzExtra]="descExtraTpl">
+            <textarea
+              nz-input
+              formControlName="description"
+              maxlength="200"
+              [nzAutosize]="{ minRows: 4, maxRows: 10 }"
+            >
+            </textarea>
+            <ng-template #descExtraTpl>
+              <div>此文字用于描述分类, 在有的主题中它会被显示.</div>
+            </ng-template>
+          </nz-form-control>
+        </nz-form-item>
+
+        <nz-form-item nz-row style="margin-bottom: 8px">
+          <nz-form-control>
+            <button nz-button nzType="primary" type="submit">提交</button>
+          </nz-form-control>
+        </nz-form-item>
+      </form>
+    </div>
+  </div>
+</nz-spin>

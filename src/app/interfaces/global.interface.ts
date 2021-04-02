@@ -25,15 +25,12 @@ export interface IMenu {
   children?: IMenu[];
 }
 
-export interface IBaseResponse {
-  code: number;
-  message: string;
-}
-
-export interface IStringResponse {
-  code: number;
-  message: string;
-  data: string;
+export interface IMeta {
+  mid: number;
+  name: string;
+  slug?: string;
+  parent?: number;
+  description?: string;
 }
 
 export type IUserGroup =

@@ -6,6 +6,7 @@ import { UpdateComponent } from "./update/update.component";
 const routes: Routes = [
   { path: "list", component: ListComponent },
   { path: "create", component: UpdateComponent },
+  { path: "update/:mid", component: UpdateComponent },
 ];
 
 @NgModule({

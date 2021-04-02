@@ -18,8 +18,8 @@ import "../config/echart.theme";
 import { NgZorroAntdModule } from "./ng-zorro-antd.module";
 
 // pipes
-import { TimeagoPipe, UserGroupPipe } from "@/pipes";
-const pipes = [TimeagoPipe, UserGroupPipe];
+import { TimeagoPipe, UserGroupPipe, FormatPipe } from "@/pipes";
+const pipes = [TimeagoPipe, UserGroupPipe, FormatPipe];
 
 // components
 import { ExampleComponent, TagPickerComponent } from "../components";
