@@ -1,58 +1,53 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "@environments/environment";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { ActivatedRoute, Router } from "@angular/router";
-
-interface IResponse {
-  code: number;
-  message: string;
-  data: any;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@environments/environment';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IPaginate, IResponse, IUserProfile } from '@/interfaces';
 
 @Component({
-  selector: "app-update",
-  templateUrl: "./update.component.html",
-  styleUrls: ["./update.component.less"],
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.less'],
 })
 export class UpdateComponent implements OnInit {
   spinning = false;
   submitting = false;
   updateForm!: FormGroup;
   groupEnums = [
-    { label: "关注者", value: "subscriber" },
-    { label: "贡献者", value: "contributor" },
-    { label: "编辑", value: "editor" },
-    { label: "管理员", value: "administrator" },
+    { label: '关注者', value: 'subscriber' },
+    { label: '贡献者', value: 'contributor' },
+    { label: '编辑', value: 'editor' },
+    { label: '管理员', value: 'administrator' },
   ];
-  currentUid: string | null = "";
+  currentUid: string | null = '';
 
   constructor(
     private fb: FormBuilder,
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private message: NzMessageService
+    private message: NzMessageService,
   ) {}
 
   ngOnInit() {
     this.updateForm = this.fb.group({
-      name: ["", [Validators.required]],
-      mail: ["", [Validators.required]],
-      screenName: [""],
-      password: ["", [Validators.required]],
-      confirm: ["", [Validators.required]],
-      url: [""],
-      group: ["subscriber", [Validators.required]],
+      name: ['', [Validators.required]],
+      mail: ['', [Validators.required]],
+      screenName: [''],
+      password: ['', [Validators.required]],
+      confirm: ['', [Validators.required]],
+      url: [''],
+      group: ['subscriber', [Validators.required]],
     });
     this.route.paramMap.subscribe((params) => {
-      this.currentUid = params.get("uid");
+      this.currentUid = params.get('uid');
       if (this.currentUid) {
-        this.updateForm.get("password")?.clearValidators();
-        this.updateForm.get("password")?.markAsPristine();
-        this.updateForm.get("confirm")?.clearValidators();
-        this.updateForm.get("confirm")?.markAsPristine();
+        this.updateForm.get('password')?.clearValidators();
+        this.updateForm.get('password')?.markAsPristine();
+        this.updateForm.get('confirm')?.clearValidators();
+        this.updateForm.get('confirm')?.markAsPristine();
         this.fetchUser();
       }
     });
@@ -62,18 +57,18 @@ export class UpdateComponent implements OnInit {
     this.spinning = true;
     try {
       const res = await this.http
-        .get<IResponse>(`${environment.baseUrl}/users/${this.currentUid}`)
+        .get<IResponse<IUserProfile>>(`${environment.baseUrl}/users/${this.currentUid}`)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
       const { name, mail, screenName, url, group } = res.data;
-      this.updateForm.get("name")?.setValue(name);
-      this.updateForm.get("mail")?.setValue(mail);
-      this.updateForm.get("screenName")?.setValue(screenName);
-      this.updateForm.get("url")?.setValue(url);
-      this.updateForm.get("group")?.setValue(group);
+      this.updateForm.get('name')?.setValue(name);
+      this.updateForm.get('mail')?.setValue(mail);
+      this.updateForm.get('screenName')?.setValue(screenName);
+      this.updateForm.get('url')?.setValue(url);
+      this.updateForm.get('group')?.setValue(group);
     } catch (e) {
       this.message.warning(e.message);
     } finally {
@@ -91,7 +86,7 @@ export class UpdateComponent implements OnInit {
     }
     const { password, confirm } = this.updateForm.value;
     if (password && password !== confirm) {
-      this.message.warning("两次输入的密码不一致");
+      this.message.warning('两次输入的密码不一致');
       return;
     }
     if (this.currentUid) {
@@ -106,13 +101,13 @@ export class UpdateComponent implements OnInit {
     try {
       const { confirm, ...fd } = this.updateForm.value;
       const res = await this.http
-        .post<IResponse>(`${environment.baseUrl}/users`, fd)
+        .post<IResponse<void>>(`${environment.baseUrl}/users`, fd)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
-      this.router.navigateByUrl("/user/list");
+      this.router.navigateByUrl('/user/list');
     } catch (e) {
       this.message.warning(e.message);
     } finally {
@@ -125,13 +120,13 @@ export class UpdateComponent implements OnInit {
     try {
       const { confirm, ...fd } = this.updateForm.value;
       const res = await this.http
-        .patch<IResponse>(`${environment.baseUrl}/users/${this.currentUid}`, fd)
+        .patch<IResponse<void>>(`${environment.baseUrl}/users/${this.currentUid}`, fd)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
-      this.router.navigateByUrl("/user/list");
+      this.router.navigateByUrl('/user/list');
     } catch (e) {
       this.message.warning(e.message);
     } finally {

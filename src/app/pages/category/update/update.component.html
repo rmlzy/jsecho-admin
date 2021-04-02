@@ -1,6 +1,4 @@
-<nz-page-header
-  [nzTitle]="currentMid ? '编辑标签' : '创建标签'"
-></nz-page-header>
+<nz-page-header [nzTitle]="currentMid ? '编辑标签' : '创建标签'"></nz-page-header>
 
 <nz-spin [nzSpinning]="spinning">
   <div nz-row nzGutter="10">
@@ -11,12 +9,7 @@
       [nzMd]="{ span: 12, offset: 6 }"
       [nzLg]="{ span: 10, offset: 7 }"
     >
-      <form
-        nz-form
-        [formGroup]="updateForm"
-        nzLayout="vertical"
-        (ngSubmit)="submit()"
-      >
+      <form nz-form [formGroup]="updateForm" nzLayout="vertical" (ngSubmit)="submit()">
         <nz-form-item>
           <nz-form-label nzRequired>分类名称</nz-form-label>
           <nz-form-control nzErrorTip="必须填写分类名称">
@@ -29,10 +22,7 @@
           <nz-form-control [nzExtra]="slugExtraTpl">
             <input nz-input formControlName="slug" maxlength="200" />
             <ng-template #slugExtraTpl>
-              <div>
-                分类缩略名用于创建友好的链接形式, 建议使用字母, 数字,
-                下划线和横杠.
-              </div>
+              <div>分类缩略名用于创建友好的链接形式, 建议使用字母, 数字, 下划线和横杠.</div>
             </ng-template>
           </nz-form-control>
         </nz-form-item>

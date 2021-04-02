@@ -1,4 +1,4 @@
-import { IUserGroup } from "@/interfaces";
+import { IUserGroup } from '@/interfaces';
 
 interface ITableRow {
   uid: number;
@@ -15,10 +15,4 @@ export interface ITableData {
   pageSize: number;
   total: number;
   items: ITableRow[];
-}
-
-export interface IResponse {
-  code: number;
-  message: string;
-  data: ITableData;
 }

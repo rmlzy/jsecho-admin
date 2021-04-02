@@ -1,14 +1,15 @@
-import { Component, OnInit } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { NzTableQueryParams } from "ng-zorro-antd/table";
-import { environment } from "@environments/environment";
-import { IResponse, ITableData } from "./list.interface";
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { environment } from '@environments/environment';
+import { ITableData } from './list.interface';
+import { IResponse } from '@/interfaces';
 
 @Component({
-  selector: "app-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.less"],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.less'],
 })
 export class ListComponent implements OnInit {
   tableLoading = false;
@@ -28,7 +29,7 @@ export class ListComponent implements OnInit {
     try {
       const { pageIndex, pageSize } = this.tableData;
       const res = await this.http
-        .get<IResponse>(`${environment.baseUrl}/users`, {
+        .get<IResponse<ITableData>>(`${environment.baseUrl}/users`, {
           params: { pageIndex: String(pageIndex), pageSize: String(pageSize) },
         })
         .toPromise();
@@ -48,12 +49,12 @@ export class ListComponent implements OnInit {
     this.tableLoading = true;
     try {
       const res = await this.http
-        .delete<IResponse>(`${environment.baseUrl}/users/${uid}`)
+        .delete<IResponse<void>>(`${environment.baseUrl}/users/${uid}`)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
       }
-      this.message.success("操作成功");
+      this.message.success('操作成功');
       await this.fetchTableData();
     } catch (e) {
       this.message.warning(e.message);

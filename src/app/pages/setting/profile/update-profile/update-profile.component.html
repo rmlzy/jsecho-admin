@@ -1,0 +1,36 @@
+<h3>个人资料</h3>
+<form nz-form [formGroup]="profileForm" nzLayout="vertical" (ngSubmit)="submit()">
+  <nz-form-item>
+    <nz-form-label>昵称</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="screenName" maxlength="200" />
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label>个人主页地址</nz-form-label>
+    <nz-form-control [nzExtra]="urlExtraTpl">
+      <input nz-input formControlName="url" maxlength="200" />
+      <ng-template #urlExtraTpl>
+        <div>此用户的个人主页地址, 请用 http:// 开头.</div>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label nzRequired>电子邮箱地址</nz-form-label>
+    <nz-form-control nzErrorTip="必须填写电子邮箱" [nzExtra]="mailExtraTpl">
+      <input nz-input formControlName="mail" maxlength="200" />
+      <ng-template #mailExtraTpl>
+        <div>电子邮箱地址将作为此用户的主要联系方式.</div>
+        <div>请不要与系统中现有的电子邮箱地址重复.</div>
+      </ng-template>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item nz-row style="margin-bottom: 8px">
+    <nz-form-control>
+      <button nz-button nzType="primary" type="submit">更新我的档案</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>

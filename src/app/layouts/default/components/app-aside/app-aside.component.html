@@ -7,9 +7,7 @@
       [nzMode]="menuMode"
       (nzClick)="(onMenuClick)"
     >
-      <ng-container
-        *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"
-      ></ng-container>
+      <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
       <ng-template #menuTpl let-menus>
         <ng-container *ngFor="let menu of menus">
           <li
@@ -34,10 +32,7 @@
           >
             <ul>
               <ng-container
-                *ngTemplateOutlet="
-                  menuTpl;
-                  context: { $implicit: menu.children }
-                "
+                *ngTemplateOutlet="menuTpl; context: { $implicit: menu.children }"
               ></ng-container>
             </ul>
           </li>

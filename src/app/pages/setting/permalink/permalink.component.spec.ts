@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PermalinkComponent } from "./permalink.component";
+import { PermalinkComponent } from './permalink.component';
 
-describe("PermalinkComponent", () => {
+describe('PermalinkComponent', () => {
   let component: PermalinkComponent;
   let fixture: ComponentFixture<PermalinkComponent>;
 
@@ -18,7 +18,7 @@ describe("PermalinkComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

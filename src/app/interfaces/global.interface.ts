@@ -1,4 +1,4 @@
-import { NzMenuThemeType } from "ng-zorro-antd/menu";
+import { NzMenuThemeType } from 'ng-zorro-antd/menu';
 
 export interface IUserProfile {
   uid: number;
@@ -10,7 +10,7 @@ export interface IUserProfile {
 }
 
 export interface IThemeConfig {
-  layout: "vertical" | "horizontal";
+  layout: 'vertical' | 'horizontal';
   asideTheme: NzMenuThemeType;
   fixedHeader: boolean;
   fluid: boolean;
@@ -33,9 +33,17 @@ export interface IMeta {
   description?: string;
 }
 
-export type IUserGroup =
-  | "administrator"
-  | "editor"
-  | "contributor"
-  | "subscriber"
-  | "visitor";
+export type IUserGroup = 'administrator' | 'editor' | 'contributor' | 'subscriber' | 'visitor';
+
+export interface IResponse<T> {
+  code: number;
+  message: string;
+  data: T;
+}
+
+export interface IPaginate<T> {
+  pageIndex: number;
+  pageSize: number;
+  total: number;
+  items: T[];
+}

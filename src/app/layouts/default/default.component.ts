@@ -1,22 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { ConfigService, AuthService } from "@/services";
-import { IThemeConfig } from "@/interfaces";
-import { THEME_CONFIG } from "@/config";
+import { Component, OnInit } from '@angular/core';
+import { ConfigService, AuthService } from '@/services';
+import { IThemeConfig } from '@/interfaces';
+import { THEME_CONFIG } from '@/config';
 
 @Component({
-  selector: "app-default",
-  templateUrl: "./default.component.html",
-  styleUrls: ["./default.component.less"],
+  selector: 'app-default',
+  templateUrl: './default.component.html',
+  styleUrls: ['./default.component.less'],
 })
 export class DefaultComponent implements OnInit {
   theme: IThemeConfig = THEME_CONFIG;
   collapsed = false;
   spinning = false;
 
-  constructor(
-    private configService: ConfigService,
-    private authService: AuthService
-  ) {
+  constructor(private configService: ConfigService, private authService: AuthService) {
     this.configService.theme.subscribe((value) => {
       this.theme = value;
     });

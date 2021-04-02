@@ -1,4 +1,4 @@
-@import "~ng-zorro-antd/ng-zorro-antd.less";
+@import '~ng-zorro-antd/ng-zorro-antd.less';
 
 // The prefix to use on all css classes from ant.
 @ant-prefix: ant;
@@ -15,24 +15,18 @@
 
 // Color used by default to control hover and active backgrounds and for
 // alert info backgrounds.
-@primary-1: color(
-  ~`colorPalette("@{primary-color}", 1) `
-); // replace tint(@primary-color, 90%)
-@primary-2: color(
-  ~`colorPalette("@{primary-color}", 2) `
-); // replace tint(@primary-color, 80%)
-@primary-3: color(~`colorPalette("@{primary-color}", 3) `); // unused
-@primary-4: color(~`colorPalette("@{primary-color}", 4) `); // unused
+@primary-1: color(~`colorPalette('@{primary-color}', 1) `); // replace tint(@primary-color, 90%)
+@primary-2: color(~`colorPalette('@{primary-color}', 2) `); // replace tint(@primary-color, 80%)
+@primary-3: color(~`colorPalette('@{primary-color}', 3) `); // unused
+@primary-4: color(~`colorPalette('@{primary-color}', 4) `); // unused
 @primary-5: color(
-  ~`colorPalette("@{primary-color}", 5) `
+  ~`colorPalette('@{primary-color}', 5) `
 ); // color used to control the text color in many active and hover states, replace tint(@primary-color, 20%)
 @primary-6: @primary-color; // color used to control the text color of active buttons, don't use, use @primary-color
-@primary-7: color(
-  ~`colorPalette("@{primary-color}", 7) `
-); // replace shade(@primary-color, 5%)
-@primary-8: color(~`colorPalette("@{primary-color}", 8) `); // unused
-@primary-9: color(~`colorPalette("@{primary-color}", 9) `); // unused
-@primary-10: color(~`colorPalette("@{primary-color}", 10) `); // unused
+@primary-7: color(~`colorPalette('@{primary-color}', 7) `); // replace shade(@primary-color, 5%)
+@primary-8: color(~`colorPalette('@{primary-color}', 8) `); // unused
+@primary-9: color(~`colorPalette('@{primary-color}', 9) `); // unused
+@primary-10: color(~`colorPalette('@{primary-color}', 10) `); // unused
 
 // Base Scaffolding Variables
 // ---
@@ -41,12 +35,10 @@
 @body-background: #fff;
 // Base background color for most components
 @component-background: #fff;
-@font-family: "Chinese Quote", -apple-system, BlinkMacSystemFont, "Segoe UI",
-  "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "Helvetica Neue",
-  Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-  "Segoe UI Symbol";
-@code-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier,
-  monospace;
+@font-family: 'Chinese Quote', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC',
+  'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Helvetica, Arial, sans-serif,
+  'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+@code-family: 'SFMono-Regular', Consolas, 'Liberation Mono', Menlo, Courier, monospace;
 @heading-color: fade(#000, 85%);
 @text-color: fade(#000, 65%);
 @text-color-secondary: fade(#000, 45%);
@@ -81,8 +73,8 @@
 
 // LINK
 @link-color: @primary-color;
-@link-hover-color: color(~`colorPalette("@{link-color}", 5) `);
-@link-active-color: color(~`colorPalette("@{link-color}", 7) `);
+@link-hover-color: color(~`colorPalette('@{link-color}', 5) `);
+@link-active-color: color(~`colorPalette('@{link-color}', 7) `);
 @link-decoration: none;
 @link-hover-decoration: none;
 
@@ -103,12 +95,7 @@
 @ease-in-out-quint: cubic-bezier(0.86, 0, 0.07, 1);
 
 // Border color
-@border-color-base: rgba(
-  101,
-  109,
-  119,
-  0.16
-); // base border outline a component
+@border-color-base: rgba(101, 109, 119, 0.16); // base border outline a component
 @border-color-split: hsv(0, 0, 91%); // split border inside a component
 @border-width-base: 1px; // width of the border for a component
 @border-style-base: solid; // style of a components border
@@ -533,17 +520,17 @@
 
 // Alert
 // ---
-@alert-success-border-color: ~`colorPalette("@{success-color}", 3) `;
-@alert-success-bg-color: ~`colorPalette("@{success-color}", 1) `;
+@alert-success-border-color: ~`colorPalette('@{success-color}', 3) `;
+@alert-success-bg-color: ~`colorPalette('@{success-color}', 1) `;
 @alert-success-icon-color: @success-color;
-@alert-info-border-color: ~`colorPalette("@{info-color}", 3) `;
-@alert-info-bg-color: ~`colorPalette("@{info-color}", 1) `;
+@alert-info-border-color: ~`colorPalette('@{info-color}', 3) `;
+@alert-info-bg-color: ~`colorPalette('@{info-color}', 1) `;
 @alert-info-icon-color: @info-color;
-@alert-warning-border-color: ~`colorPalette("@{warning-color}", 3) `;
-@alert-warning-bg-color: ~`colorPalette("@{warning-color}", 1) `;
+@alert-warning-border-color: ~`colorPalette('@{warning-color}', 3) `;
+@alert-warning-bg-color: ~`colorPalette('@{warning-color}', 1) `;
 @alert-warning-icon-color: @warning-color;
-@alert-error-border-color: ~`colorPalette("@{error-color}", 3) `;
-@alert-error-bg-color: ~`colorPalette("@{error-color}", 1) `;
+@alert-error-border-color: ~`colorPalette('@{error-color}', 3) `;
+@alert-error-bg-color: ~`colorPalette('@{error-color}', 1) `;
 @alert-error-icon-color: @error-color;
 
 // List

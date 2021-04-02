@@ -1,19 +1,13 @@
-import {
-  Component,
-  ElementRef,
-  ViewChild,
-  forwardRef,
-  Input,
-} from "@angular/core";
-import { NG_VALUE_ACCESSOR, ControlValueAccessor } from "@angular/forms";
+import { Component, ElementRef, ViewChild, forwardRef, Input } from '@angular/core';
+import { NG_VALUE_ACCESSOR, ControlValueAccessor } from '@angular/forms';
 
 type ITags = string[];
 
 @Component({
   // tslint:disable-next-line:component-selector
-  selector: "tag-picker",
-  templateUrl: "./tag-picker.component.html",
-  styleUrls: ["./tag-picker.component.less"],
+  selector: 'tag-picker',
+  templateUrl: './tag-picker.component.html',
+  styleUrls: ['./tag-picker.component.less'],
   providers: [
     {
       provide: NG_VALUE_ACCESSOR,
@@ -25,9 +19,9 @@ type ITags = string[];
 export class TagPickerComponent implements ControlValueAccessor {
   innerValue: ITags = [];
   inputVisible = false;
-  inputValue = "";
+  inputValue = '';
   @Input() disabled = false;
-  @ViewChild("inputElement", { static: false }) inputElement?: ElementRef;
+  @ViewChild('inputElement', { static: false }) inputElement?: ElementRef;
 
   public get value(): ITags {
     return this.innerValue;
@@ -72,7 +66,7 @@ export class TagPickerComponent implements ControlValueAccessor {
         this.value = [...this.innerValue, this.inputValue];
       }
     }
-    this.inputValue = "";
+    this.inputValue = '';
     this.inputVisible = false;
   }
 }

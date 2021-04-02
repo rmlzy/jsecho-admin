@@ -9,10 +9,7 @@
     [class.is-fixed-header]="theme.fixedHeader"
     [class.is-fluid]="theme.fluid"
   >
-    <app-aside
-      [collapsed]="collapsed"
-      (toggleCollapsed)="toggleCollapsed($event)"
-    ></app-aside>
+    <app-aside [collapsed]="collapsed" (toggleCollapsed)="toggleCollapsed($event)"></app-aside>
     <app-body></app-body>
     <app-footer></app-footer>
   </div>

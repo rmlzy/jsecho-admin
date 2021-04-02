@@ -1,11 +1,11 @@
-import { Injectable } from "@angular/core";
-import { HttpClient } from "@angular/common/http";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { CookieService } from "ngx-cookie-service";
-import { environment } from "@environments/environment";
-import { Router } from "@angular/router";
-import { IUserProfile } from "@/interfaces";
-import { ConfigService } from "@/services/config.service";
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { CookieService } from 'ngx-cookie-service';
+import { environment } from '@environments/environment';
+import { Router } from '@angular/router';
+import { IUserProfile } from '@/interfaces';
+import { ConfigService } from '@/services/config.service';
 
 interface ILoginFormData {
   name: string;
@@ -30,7 +30,7 @@ interface ILogoutResponse {
 }
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class AuthService {
   constructor(
@@ -38,7 +38,7 @@ export class AuthService {
     private router: Router,
     private message: NzMessageService,
     private configService: ConfigService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
   ) {}
 
   async login(loginFormData: ILoginFormData) {
@@ -50,8 +50,8 @@ export class AuthService {
         this.message.warning(res.message);
         return;
       }
-      this.cookieService.set("token", res.data);
-      await this.router.navigateByUrl("/");
+      this.cookieService.set('token', res.data);
+      await this.router.navigateByUrl('/');
     } catch (e) {
       this.message.warning(e.message);
     }
@@ -59,17 +59,12 @@ export class AuthService {
 
   async logout() {
     try {
-      const res = await this.http
-        .get<ILogoutResponse>(`${environment.baseUrl}/logout`)
-        .toPromise();
-      if (res.code !== 200) {
-        this.message.warning(res.message);
-        return;
-      }
-      this.cookieService.delete("token");
-      await this.router.navigateByUrl("/login");
+      await this.http.get<ILogoutResponse>(`${environment.baseUrl}/logout`).toPromise();
     } catch (e) {
       this.message.warning(e.message);
+    } finally {
+      this.cookieService.delete('token');
+      await this.router.navigateByUrl('/login');
     }
   }
 

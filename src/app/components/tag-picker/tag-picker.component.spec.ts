@@ -1,8 +1,8 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TagPickerComponent } from "./tag-picker.component";
+import { TagPickerComponent } from './tag-picker.component';
 
-describe("TagPickerComponent", () => {
+describe('TagPickerComponent', () => {
   let component: TagPickerComponent;
   let fixture: ComponentFixture<TagPickerComponent>;
 
@@ -18,7 +18,7 @@ describe("TagPickerComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

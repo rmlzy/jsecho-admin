@@ -1,1 +1,15 @@
-<p>profile works!</p>
+<nz-page-header nzTitle="个人设置"></nz-page-header>
+
+<div nz-row nzGutter="10">
+  <div
+    nz-col
+    [nzXs]="{ span: 24 }"
+    [nzSm]="{ span: 20, offset: 2 }"
+    [nzMd]="{ span: 12, offset: 6 }"
+    [nzLg]="{ span: 10, offset: 7 }"
+  >
+    <app-update-profile></app-update-profile>
+    <nz-divider></nz-divider>
+    <app-update-password></app-update-password>
+  </div>
+</div>

@@ -1,27 +1,21 @@
-import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { HttpClient } from "@angular/common/http";
-import { environment } from "@environments/environment";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { ActivatedRoute, Router } from "@angular/router";
-import { IMeta } from "@/interfaces";
-
-interface IResponse {
-  code: number;
-  message: string;
-  data: any;
-}
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '@environments/environment';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { ActivatedRoute, Router } from '@angular/router';
+import { IMeta, IPaginate, IResponse } from '@/interfaces';
 
 @Component({
-  selector: "app-update",
-  templateUrl: "./update.component.html",
-  styleUrls: ["./update.component.less"],
+  selector: 'app-update',
+  templateUrl: './update.component.html',
+  styleUrls: ['./update.component.less'],
 })
 export class UpdateComponent implements OnInit {
   spinning = false;
   submitting = false;
   updateForm!: FormGroup;
-  currentMid: string | null = "";
+  currentMid: string | null = '';
   parentEnums: IMeta[] = [];
 
   constructor(
@@ -29,18 +23,18 @@ export class UpdateComponent implements OnInit {
     private http: HttpClient,
     private router: Router,
     private route: ActivatedRoute,
-    private message: NzMessageService
+    private message: NzMessageService,
   ) {}
 
   ngOnInit() {
     this.updateForm = this.fb.group({
-      name: ["", [Validators.required]],
-      slug: [""],
+      name: ['', [Validators.required]],
+      slug: [''],
       parent: [0],
-      description: [""],
+      description: [''],
     });
     this.route.paramMap.subscribe((params) => {
-      this.currentMid = params.get("mid");
+      this.currentMid = params.get('mid');
       if (this.currentMid) {
         this.fetchMeta();
       }
@@ -51,17 +45,17 @@ export class UpdateComponent implements OnInit {
     this.spinning = true;
     try {
       const res = await this.http
-        .get<IResponse>(`${environment.baseUrl}/metas/${this.currentMid}`)
+        .get<IResponse<IMeta>>(`${environment.baseUrl}/metas/${this.currentMid}`)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
       const { name, slug, parent, description } = res.data;
-      this.updateForm.get("name")?.setValue(name);
-      this.updateForm.get("slug")?.setValue(slug);
-      this.updateForm.get("parent")?.setValue(parent);
-      this.updateForm.get("description")?.setValue(description);
+      this.updateForm.get('name')?.setValue(name);
+      this.updateForm.get('slug')?.setValue(slug);
+      this.updateForm.get('parent')?.setValue(parent);
+      this.updateForm.get('description')?.setValue(description);
     } catch (e) {
       this.message.warning(e.message);
     } finally {
@@ -79,7 +73,7 @@ export class UpdateComponent implements OnInit {
     }
     const { password, confirm } = this.updateForm.value;
     if (password && password !== confirm) {
-      this.message.warning("两次输入的密码不一致");
+      this.message.warning('两次输入的密码不一致');
       return;
     }
     if (this.currentMid) {
@@ -94,16 +88,16 @@ export class UpdateComponent implements OnInit {
     try {
       const fd = {
         ...this.updateForm.value,
-        type: "category",
+        type: 'category',
       };
       const res = await this.http
-        .post<IResponse>(`${environment.baseUrl}/metas`, fd)
+        .post<IResponse<void>>(`${environment.baseUrl}/metas`, fd)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
-      this.router.navigateByUrl("/category/list");
+      this.router.navigateByUrl('/category/list');
     } catch (e) {
       this.message.warning(e.message);
     } finally {
@@ -116,16 +110,16 @@ export class UpdateComponent implements OnInit {
     try {
       const fd = {
         ...this.updateForm.value,
-        type: "category",
+        type: 'category',
       };
       const res = await this.http
-        .patch<IResponse>(`${environment.baseUrl}/metas/${this.currentMid}`, fd)
+        .patch<IResponse<void>>(`${environment.baseUrl}/metas/${this.currentMid}`, fd)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
         return;
       }
-      this.router.navigateByUrl("/category/list");
+      this.router.navigateByUrl('/category/list');
     } catch (e) {
       this.message.warning(e.message);
     } finally {

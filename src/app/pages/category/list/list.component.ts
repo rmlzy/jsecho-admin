@@ -1,18 +1,19 @@
-import { Component, OnInit } from "@angular/core";
-import { NzTableQueryParams } from "ng-zorro-antd/table";
-import { HttpClient } from "@angular/common/http";
-import { NzMessageService } from "ng-zorro-antd/message";
-import { environment } from "@environments/environment";
-import { ITableData, IResponse } from "./list.interface";
+import { Component, OnInit } from '@angular/core';
+import { NzTableQueryParams } from 'ng-zorro-antd/table';
+import { HttpClient } from '@angular/common/http';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { environment } from '@environments/environment';
+import { IResponse, IPaginate } from '@/interfaces';
+import { ITableRow } from './list.interface';
 
 @Component({
-  selector: "app-list",
-  templateUrl: "./list.component.html",
-  styleUrls: ["./list.component.less"],
+  selector: 'app-list',
+  templateUrl: './list.component.html',
+  styleUrls: ['./list.component.less'],
 })
 export class ListComponent implements OnInit {
   tableLoading = false;
-  tableData: ITableData = {
+  tableData: IPaginate<ITableRow> = {
     items: [],
     pageIndex: 1,
     pageSize: 20,
@@ -28,11 +29,11 @@ export class ListComponent implements OnInit {
     try {
       const { pageIndex, pageSize } = this.tableData;
       const res = await this.http
-        .get<IResponse>(`${environment.baseUrl}/metas`, {
+        .get<IResponse<IPaginate<ITableRow>>>(`${environment.baseUrl}/metas`, {
           params: {
             pageIndex: String(pageIndex),
             pageSize: String(pageSize),
-            type: "category",
+            type: 'category',
           },
         })
         .toPromise();
@@ -52,12 +53,12 @@ export class ListComponent implements OnInit {
     this.tableLoading = true;
     try {
       const res = await this.http
-        .delete<IResponse>(`${environment.baseUrl}/metas/${cid}`)
+        .delete<IResponse<void>>(`${environment.baseUrl}/metas/${cid}`)
         .toPromise();
       if (res.code !== 200) {
         this.message.warning(res.message);
       }
-      this.message.success("操作成功");
+      this.message.success('操作成功');
       await this.fetchTableData();
     } catch (e) {
       this.message.warning(e.message);
@@ -67,7 +68,6 @@ export class ListComponent implements OnInit {
   }
 
   query(params: NzTableQueryParams) {
-    console.log("params", params);
     const { pageSize, pageIndex } = params;
     this.tableData = {
       items: [],

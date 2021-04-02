@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
-import { BehaviorSubject, Subject } from "rxjs";
-import { IThemeConfig, IUserProfile, IMenu } from "@/interfaces";
-import { THEME_CONFIG, APP_MENUS } from "@/config";
+import { Injectable } from '@angular/core';
+import { BehaviorSubject, Subject } from 'rxjs';
+import { IThemeConfig, IUserProfile, IMenu } from '@/interfaces';
+import { THEME_CONFIG, APP_MENUS } from '@/config';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class ConfigService {
   menus: BehaviorSubject<IMenu[]> = new BehaviorSubject<IMenu[]>(APP_MENUS);
